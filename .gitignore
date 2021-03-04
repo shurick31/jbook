@@ -19,6 +19,7 @@
 .env.production.local
 .history/
 report.20*
+.eslintcache
 
 
 npm-debug.log*
