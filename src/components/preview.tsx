@@ -3,6 +3,7 @@ import './preview.css';
 
 interface PreviewProps {
     code: string;
+    bundlingStatus: string;
 }
 
 const html = `
@@ -18,7 +19,7 @@ const html = `
                         root.innerHTML = '<div style="color: red;"><h4>Runtime error</h4>' + err + '</div>';
                         console.error(err);
                     };
-                    
+
                     // async errors
                     window.addEventListener('error',(event)=> {
                         event.preventDefault();
@@ -38,7 +39,7 @@ const html = `
         </html>
     `;
 
-const Preview: React.FC<PreviewProps> = ({ code }) => {
+const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
     const iframe = useRef<any>();
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
             ref={iframe} 
             sandbox="allow-scripts" 
             srcDoc={html}/>
+        { bundlingStatus && <div className='preview-error'><h4>Bundling error</h4>{ bundlingStatus }</div>}
         </div>
 };
 
