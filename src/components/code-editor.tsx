@@ -54,23 +54,23 @@ const CodeEditor: React.FC<CodeEditorProps> = ({onChange, initialValue}) => {
             className="button button-format is-primary is-small"
             onClick={onFormatClick}>Format</button>
         <MonacoEditor 
-        editorDidMount={onEditorDidMount}
-        value={initialValue}
-        theme="dark"
-        language="javascript"
-        height="500px"
-        options={{
-            wordWrap: 'on',
-            minimap: {
-                enabled: false
-            },
-            showUnused: false,
-            folding: false,
-            lineNumbersMinChars: 3,
-            fontSize: 16,
-            scrollBeyondLastLine: false,
-            automaticLayout: true,
-        }}
+            editorDidMount={onEditorDidMount}
+            value={initialValue}
+            theme="dark"
+            language="javascript"
+            height="100%"
+            options={{
+                wordWrap: 'on',
+                minimap: {
+                    enabled: false
+                },
+                showUnused: false,
+                folding: false,
+                lineNumbersMinChars: 3,
+                fontSize: 16,
+                scrollBeyondLastLine: false,
+                automaticLayout: true,
+            }}
     />
     </div>
 };
