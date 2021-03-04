@@ -11,6 +11,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children}) => {
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const [width, setWidth] = useState(window.innerWidth * 0.75);
 
     useEffect(()=>{
         let timer: any
@@ -22,6 +23,9 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children}) => {
             timer = setTimeout(() => {
                 setWindowWidth(window.innerWidth);
                 setWindowHeight(window.innerHeight);
+                if (window.innerWidth * 0.75 < width) {
+                    setWidth(window.innerWidth * 0.75);
+                }
             }, 150);
         };
 
@@ -38,8 +42,11 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children}) => {
             minConstraints: [windowWidth *  0.2, Infinity],
             maxConstraints: [windowWidth *  0.75, Infinity],
             height: Infinity,
-            width: windowWidth *  0.75,
+            width,
             resizeHandles: ['e'],
+            onResizeStop: (event, data) => {
+                setWidth(data.size.width);
+            }
         };
     } else {
         resizableProps = {
