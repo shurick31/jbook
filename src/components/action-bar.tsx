@@ -1,4 +1,5 @@
 import { useActions } from '../hooks/use-actions';
+import ActionButton from './action-button';
 
 interface ActionBarProps {
     id: string;
@@ -7,9 +8,15 @@ interface ActionBarProps {
 const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
     const { moveCell, deleteCell } = useActions();
     return (<div>
-        <button onClick={() => moveCell(id, 'up')}>UP</button>
-        <button onClick={() => moveCell(id, 'down')}>DOWN</button>
-        <button onClick={() => deleteCell(id)}>DELETEE</button>
+        <ActionButton
+            onClick={() => moveCell(id, 'up')}
+            className='fa-arrow-up' />
+        <ActionButton
+            onClick={() => moveCell(id, 'down')}
+            className='fa-arrow-down' />
+        <ActionButton
+            onClick={() => deleteCell(id)}
+            className='fa-times' />
     </div>)
 }
 
