@@ -7,7 +7,7 @@ import {
 } from '../actions'
 import bundle from '../../bundler/index'
 
-export const createBndle = (cellId: string, input: string) => {
+export const createBundle = (cellId: string, input: string) => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({
             type: ActionType.BUNDLE_START,
