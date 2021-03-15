@@ -19,11 +19,8 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             createBundle(cell.id, cell.content)
             return
         }
-        let timer: any
-        if (timer) {
-            clearTimeout(timer)
-        }
-        timer = setTimeout(async () => {
+
+        const timer = setTimeout(async () => {
             createBundle(cell.id, cell.content)
         }, 800)
         return () => {clearTimeout(timer)}
