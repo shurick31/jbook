@@ -1,8 +1,8 @@
-import * as esbuild from 'esbuild-wasm';
-import { unpkgPathPlugin } from './plugins/unpkg-path-plugins';
-import { fetchPlugin } from './plugins/fetch-plugin';
+import * as esbuild from 'esbuild-wasm'
+import { unpkgPathPlugin } from './plugins/unpkg-path-plugins'
+import { fetchPlugin } from './plugins/fetch-plugin'
 
-let service: esbuild.Service;
+let service: esbuild.Service
 
 const bundle = async (rawCode: string) => {
 
@@ -26,6 +26,8 @@ const bundle = async (rawCode: string) => {
                 'process.env.NODE_ENV': '"production"',
                 global: 'window'
             },
+            jsxFactory: '_React.createElement',
+            jsxFragment: '_React.Fragment',
         });
         return {
             code: result.outputFiles[0].text,
@@ -37,6 +39,6 @@ const bundle = async (rawCode: string) => {
             err: err.message
         }
     }
-};
+}
 
-export default bundle;
+export default bundle
