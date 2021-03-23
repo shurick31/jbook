@@ -62,6 +62,15 @@ export interface FetchCellsErrorAction {
     payload: string;
 }
 
+export interface SaveCellsErrorAction {
+    type: ActionType.SAVE_SELLS_ERROR;
+    payload: string;
+}
+
+export interface SaveCellsSuccessAction {
+    type: ActionType.SAVE_SELLS_SUCCESS;
+}
+
 export type Action =
     MoveCellAction
     | DeleteCellAction
@@ -71,4 +80,6 @@ export type Action =
     | BundleCompleteAction
     | FetchCellsAction
     | FetchCellsCompleteAction
-    | FetchCellsErrorAction;
+    | FetchCellsErrorAction
+    | SaveCellsErrorAction
+    | SaveCellsSuccessAction;

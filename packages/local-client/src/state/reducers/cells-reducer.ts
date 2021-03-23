@@ -4,27 +4,35 @@ import { Action } from '../actions'
 import { Cell } from '../cell'
 
 interface CellsState {
-    loading: boolean
-    error: string | null
-    order: string[]
+    loading: boolean;
+    error: string | null;
+    notification: string | null;
+    order: string[];
     data: {
-        [key: string]: Cell
+        [key: string]: Cell;
     }
 }
 
 const initialState: CellsState = {
     loading: false,
+    notification: null,
     error: null,
     order: [],
     data: {}
 }
 
 const reducer = produce((state: CellsState = initialState, action: Action): CellsState  => {
+    state.notification = null
     switch(action.type) {
+        case ActionType.SAVE_SELLS_ERROR:
+            state.error = action.payload
+            return state
+        case ActionType.SAVE_SELLS_SUCCESS:
+            state.notification = 'Saved'
+            return state
         case ActionType.FETCH_CELLS:
-            state.loading = true;
-            state.error = null;
-
+            state.loading = true
+            state.error = null
             return state
         case ActionType.FETCH_CELLS_COMPLETE:
             state.order = action.payload.map(cell => cell.id)
@@ -34,8 +42,8 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
             }, {} as CellsState['data'])
             return state
         case ActionType.FETCH_CELLS_ERROR:
-            state.loading = false;
-            state.error = action.payload;
+            state.loading = false
+            state.error = action.payload
             return state
         case ActionType.UPDATE_CELL:
             const { id, content } = action.payload
