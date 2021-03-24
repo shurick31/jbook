@@ -8,6 +8,7 @@ export const persistMiddleware = ({ dispatch, getState }:
         dispatch: Dispatch<Action>; 
         getState: () => RootState;
     }) => {
+    let timer: any
     return (next: (action: Action) => void) => {
         return (action: Action) => {
             next(action)
@@ -19,7 +20,15 @@ export const persistMiddleware = ({ dispatch, getState }:
                     ActionType.DELETE_CELL
                 ].includes(action.type)
             ) {
-                saveCells()(dispatch, getState)
+                if (timer) {
+                    clearTimeout(timer)
+                }
+
+                // very bad approach
+                // for update cell needs to be synchronized with a bundling logic
+                timer = setTimeout(() => {
+                    saveCells()(dispatch, getState)
+                }, 250)
             }
         }
     }
