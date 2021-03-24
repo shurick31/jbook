@@ -22,7 +22,7 @@ const initialState: CellsState = {
 }
 
 const reducer = produce((state: CellsState = initialState, action: Action): CellsState  => {
-    state.notification = null
+    //state.notification = null
     switch(action.type) {
         case ActionType.SAVE_SELLS_ERROR:
             state.error = action.payload
