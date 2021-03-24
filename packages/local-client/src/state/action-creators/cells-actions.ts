@@ -71,6 +71,7 @@ export const  saveCells = () => {
     return async (dispatch: Dispatch<Action>, getState: () => RootState) => {
         const { cells: { data, order }} = getState()
         const cells = order.map(id => data[id])
+        console.log('Cells', cells)
         try {
             await axios.post('/cells', { cells })
             dispatch({

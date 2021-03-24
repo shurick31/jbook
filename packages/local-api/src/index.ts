@@ -5,7 +5,7 @@ import { createCellsRouter } from './routes/cell'
 
 export const serve = (port: number, filename: string, dir: string, useProxy: boolean) => {
     const app = express()
-
+    app.use(express.json())
     app.use(createCellsRouter(filename, dir))
 
     if (useProxy) {

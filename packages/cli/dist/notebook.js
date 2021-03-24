@@ -1,1 +1,1 @@
-[]
+[{"id":"vvvzk","content":"console.log('Hi there!')","type":"code"}]

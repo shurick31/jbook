@@ -10,6 +10,7 @@ var path_1 = __importDefault(require("path"));
 var cell_1 = require("./routes/cell");
 var serve = function (port, filename, dir, useProxy) {
     var app = express_1.default();
+    app.use(express_1.default.json());
     app.use(cell_1.createCellsRouter(filename, dir));
     if (useProxy) {
         app.use(http_proxy_middleware_1.createProxyMiddleware({
